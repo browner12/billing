@@ -1,0 +1,47 @@
+{
+    "name": "browner12/billing",
+    "type": "library",
+    "description": "accept payments",
+    "keywords": [
+        "browner12",
+        "billing"
+    ],
+    "homepage": "https://github.com/browner12/billing",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Brown",
+            "email": "browner12@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3",
+        "stripe/stripe-php": "~3",
+        "paypal/rest-api-sdk-php": "~1",
+        "authorizenet/authorizenet": "~1"
+    },
+    "autoload": {
+        "psr-4": {
+            "browner12\\billing\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "browner12\\billing\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

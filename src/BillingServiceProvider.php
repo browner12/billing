@@ -9,7 +9,17 @@ class BillingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Billing\BillingInterface', 'App\Billing\StripeBilling');
+        $this->app->bind('browner12\billing\BillingInterface', 'browner12\billing\StripeBilling');
+    }
+
+    /**
+     * boot
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/config/billing.php' => config_path('billing.php'),
+        ]);
     }
 
 }

@@ -16,15 +16,16 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "illuminate/support": "~5.2",
+        "stripe/stripe-php": "~3",
+        "paypal/rest-api-sdk-php": "~1",
+        "authorizenet/authorizenet": "~1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*",
         "scrutinizer/ocular": "~1.1",
-        "squizlabs/php_codesniffer": "~2.3",
-        "stripe/stripe-php": "~3",
-        "paypal/rest-api-sdk-php": "~1",
-        "authorizenet/authorizenet": "~1"
+        "squizlabs/php_codesniffer": "~2.3"
     },
     "autoload": {
         "psr-4": {

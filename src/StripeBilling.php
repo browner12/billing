@@ -15,7 +15,7 @@ class StripeBilling implements BillingInterface
      */
     public function __construct()
     {
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        Stripe::setApiKey(config('billing.api_key'));
     }
 
     /**
@@ -43,12 +43,12 @@ class StripeBilling implements BillingInterface
 
             //card declined
         catch (Card $e) {
-            throw new BillingException('card declined', null, $e);
+            throw new BillingException('Card declined', null, $e);
         }
 
             //invalid parameters were supplied to Stripe's API
         catch (InvalidRequest $e) {
-            throw new BillingException('invalid parameters error', null, $e);
+            throw new BillingException('Invalid parameters error', null, $e);
         }
 
             //authentication with Stripe's API failed (maybe you changed API keys recently)
@@ -69,5 +69,4 @@ class StripeBilling implements BillingInterface
         //return charge
         return $charge;
     }
-
 }

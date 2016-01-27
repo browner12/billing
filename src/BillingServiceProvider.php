@@ -21,5 +21,4 @@ class BillingServiceProvider extends ServiceProvider
             __DIR__.'/config/billing.php' => config_path('billing.php'),
         ]);
     }
-
 }

@@ -10,5 +10,4 @@ interface BillingInterface
      * @param string $description
      */
     public function charge($amount, $token, $description);
-
 }

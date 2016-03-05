@@ -6,14 +6,18 @@ class BillingServiceProvider extends ServiceProvider
 {
     /**
      * bind the interface to the implementation
+     *
+     * @return void
      */
     public function register()
     {
-        $this->app->bind('browner12\billing\BillingInterface', 'browner12\billing\StripeBilling');
+        $this->app->bind('browner12\billing\BillingInterface', config('billing.provider'));
     }
 
     /**
      * boot
+     *
+     * @return void
      */
     public function boot()
     {

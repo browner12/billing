@@ -9,8 +9,7 @@
 
 **Note:** Replace ```Andrew Brown``` ```browner12``` `````` ```browner12@gmail.com``` ```browner12``` ```billing``` ```accept payments``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This is a billing package. It abstracts the implementation allowing you to quickly setup billing using your preferred provided. Please note that currently only the Stripe implementation is available.
 
 ## Install
 
@@ -20,12 +19,51 @@ Via Composer
 $ composer require browner12/billing
 ```
 
-## Usage
+## Setup
+
+Add the service provider to the providers array in `config/app.php`.
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+'providers' => [
+    browner12\billing\BillingServiceProvider::class,
+];
 ```
+
+## Publishing
+
+You can publish everything at once
+
+``` php
+php artisan vendor:publish --provider="browner12\billing\HelperServiceProvider"
+```
+
+or you can publish groups individually.
+
+``` php
+php artisan vendor:publish --provider="browner12\billing\HelperServiceProvider" --tag="config"
+```
+
+## Usage
+
+Make sure you start by updating your new `billing.php` config file. You must select a provider, and set the API key. Your API key should most likely use an environment variable.
+
+Next you will want to instantiate the biller with dependency injection.
+
+``` php
+public function __construct(BillingInterface $biller)
+{
+    //assign
+    $this->biller = $biller;
+}
+```
+
+To create a charge call the `charge` method.
+
+``` php
+$this->biller->charge(2199, $token, 'description of the charge');
+```
+
+The `$token` will come from your service provider. The token allows you to prevent any payment details from ever touching your server.
 
 ## Change log
 
